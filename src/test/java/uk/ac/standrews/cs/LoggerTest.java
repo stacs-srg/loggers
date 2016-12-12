@@ -27,4 +27,10 @@ public class LoggerTest {
         log.log("test", "hello world");
     }
 
+    @Test
+    public void useCustomLoggerWithLevelTest() {
+        LOG log = Logger.LOG(Logger.LOG4J_LOGGER);
+        log.log("test", LEVEL.ERROR,"hello world");
+    }
+
 }
