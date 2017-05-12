@@ -3,6 +3,9 @@ package uk.ac.standrews.cs;
 import uk.ac.standrews.cs.logs.Fluentd;
 import uk.ac.standrews.cs.logs.Log4j;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * @author Simone I. Conte "sic2@st-andrews.ac.uk"
  */
@@ -41,20 +44,35 @@ public class Logger {
     }
 
     private static LOG createLogInstance(String logger) {
-        switch (logger) {
-            case FLUENTD_LOGGER:
-                return new Fluentd();
-            case LOG4J_LOGGER:
-                if (Logger.filepath != null) {
-                    return new Log4j(Logger.filepath);
-                } else {
-                    return new Log4j();
-                }
-            default:
 
+        String logPath = "";
+        try {
+            logPath = File.createTempFile("app-", ".log").getAbsolutePath();
+            System.setProperty("logfile.name", logPath);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        return null;
+        LOG log = null;
+        switch (logger) {
+            case FLUENTD_LOGGER:
+                log = new Fluentd();
+                break;
+            case LOG4J_LOGGER:
+                if (Logger.filepath != null) {
+                    log = new Log4j(Logger.filepath);
+                } else {
+                    log = new Log4j();
+                }
+                break;
+        }
+
+        if (log != null) {
+            System.out.println("Log at path: " + logPath);
+            log.log(LEVEL.INFO.toString(), "Log will be stored at path " + logPath);
+        }
+
+        return log;
     }
 
     private static LOG createLogInstance() {
