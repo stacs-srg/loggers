@@ -28,7 +28,11 @@ public class Logger {
 
     public static LOG LOG(final String logger) {
         if (instance == null) {
-            instance = createLogInstance(logger);
+            try {
+                instance = createLogInstance(logger, File.createTempFile("app-", ".log").getAbsolutePath());
+            } catch (IOException e) {
+                return null;
+            }
         }
 
         return instance;
@@ -37,21 +41,15 @@ public class Logger {
     public static LOG LOG(final String logger, String filepath) {
         if (instance == null) {
             Logger.filepath = filepath;
-            instance = createLogInstance(logger);
+            instance = createLogInstance(logger, filepath);
         }
 
         return instance;
     }
 
-    private static LOG createLogInstance(String logger) {
+    private static LOG createLogInstance(String logger, String logPath) {
 
-        String logPath = "";
-        try {
-            logPath = File.createTempFile("app-", ".log").getAbsolutePath();
-            System.setProperty("logfile.name", logPath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.setProperty("logfile.name", logPath);
 
         LOG log = null;
         switch (logger) {
@@ -76,6 +74,12 @@ public class Logger {
     }
 
     private static LOG createLogInstance() {
-        return createLogInstance(DEFAULT_LOGGER);
+        try {
+            return createLogInstance(DEFAULT_LOGGER, File.createTempFile("app-", ".log").getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
