@@ -158,3 +158,5 @@ dist/
 nbdist/
 .nb-gradle/
 
+# Custom gitignore
+test.log

@@ -18,24 +18,24 @@ public class LoggerTest {
     @Test
     public void logHelloWorld() {
         LOG log = Logger.LOG();
-        log.log("test", "Hello World");
+        log.log("test-default-out", "Hello World");
     }
 
     @Test
     public void useCustomLoggerTest() {
         LOG log = Logger.LOG(Logger.LOG4J_LOGGER);
-        log.log("test", "hello world");
+        log.log("test-log4j", "hello world");
     }
 
     @Test
     public void useCustomLoggerWithLevelTest() {
         LOG log = Logger.LOG(Logger.LOG4J_LOGGER);
-        log.log("test", LEVEL.ERROR,"hello world");
+        log.log("test-log4j", LEVEL.ERROR,"hello world");
     }
 
     @Test
     public void useConsoleLoggerWithLevelTest() {
-        LOG log = Logger.LOG(Logger.STOUT_LOGGER);
-        log.log("test", LEVEL.INFO,"hello world");
+        LOG log = Logger.LOG(Logger.STDOUT_LOGGER);
+        log.log("test-out", LEVEL.INFO,"hello world");
     }
 }

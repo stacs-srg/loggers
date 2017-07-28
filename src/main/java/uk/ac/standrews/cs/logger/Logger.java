@@ -14,8 +14,8 @@ public class Logger {
 
     public static final String FLUENTD_LOGGER = "fluentd";
     public static final String LOG4J_LOGGER = "log4j";
-    public static final String STOUT_LOGGER = "stout";
-    public static final String DEFAULT_LOGGER = STOUT_LOGGER;
+    public static final String STDOUT_LOGGER = "stdout";
+    public static final String DEFAULT_LOGGER = STDOUT_LOGGER;
 
     public static LOG LOG() {
         if (instance == null) {
@@ -54,7 +54,7 @@ public class Logger {
                     System.setProperty("logfile.name", "test.log");
                     return new Log4j("test.log");
                 }
-            case STOUT_LOGGER:
+            case STDOUT_LOGGER:
                 return new Stout();
             default:
 
