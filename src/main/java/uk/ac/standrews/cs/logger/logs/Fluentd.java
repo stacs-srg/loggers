@@ -1,12 +1,13 @@
-package uk.ac.standrews.cs.logs;
+package uk.ac.standrews.cs.logger.logs;
 
 import org.fluentd.logger.FluentLogger;
-import uk.ac.standrews.cs.LEVEL;
+import uk.ac.standrews.cs.logger.LEVEL;
+import uk.ac.standrews.cs.logger.LOG;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Fluentd extends uk.ac.standrews.cs.LOG {
+public class Fluentd extends LOG {
 
     private static FluentLogger LOG;
     private static final String DEFAULT_LOGNAME = "fluentd";
