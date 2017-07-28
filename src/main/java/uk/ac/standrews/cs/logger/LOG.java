@@ -1,4 +1,4 @@
-package uk.ac.standrews.cs;
+package uk.ac.standrews.cs.logger;
 
 /**
  * @author Simone I. Conte "sic2@st-andrews.ac.uk"

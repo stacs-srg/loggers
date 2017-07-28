@@ -1,4 +1,4 @@
-package uk.ac.standrews.cs;
+package uk.ac.standrews.cs.logger;
 
 import org.testng.annotations.Test;
 
@@ -33,4 +33,9 @@ public class LoggerTest {
         log.log("test", LEVEL.ERROR,"hello world");
     }
 
+    @Test
+    public void useConsoleLoggerWithLevelTest() {
+        LOG log = Logger.LOG(Logger.STOUT_LOGGER);
+        log.log("test", LEVEL.INFO,"hello world");
+    }
 }
