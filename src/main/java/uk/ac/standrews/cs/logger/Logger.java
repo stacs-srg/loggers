@@ -42,6 +42,10 @@ public class Logger {
         return instance;
     }
 
+    public static void DESTROY() {
+        instance = null;
+    }
+
     private static LOG createLogInstance(String logger) {
         switch (logger) {
             case FLUENTD_LOGGER:

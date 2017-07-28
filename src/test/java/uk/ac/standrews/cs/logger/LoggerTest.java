@@ -1,5 +1,6 @@
 package uk.ac.standrews.cs.logger;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertNotNull;
@@ -8,6 +9,11 @@ import static org.testng.Assert.assertNotNull;
  * @author Simone I. Conte "sic2@st-andrews.ac.uk"
  */
 public class LoggerTest {
+
+    @AfterMethod
+    public void tearDown() {
+        Logger.DESTROY();
+    }
 
     @Test
     public void getLOGTest() {

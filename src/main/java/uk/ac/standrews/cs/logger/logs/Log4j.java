@@ -1,12 +1,8 @@
 package uk.ac.standrews.cs.logger.logs;
 
-import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
 import uk.ac.standrews.cs.logger.LEVEL;
 import uk.ac.standrews.cs.logger.LOG;
-
-import java.io.IOException;
 
 /**
  * @author Simone I. Conte "sic2@st-andrews.ac.uk"
@@ -14,26 +10,9 @@ import java.io.IOException;
 public class Log4j extends LOG {
 
     static Logger LOG;
-    private static final String DEFAULT_LOGNAME = "A1";
-
-    private Log4j(String logname, boolean toFile, String filepath) {
-        LOG = Logger.getLogger(logname);
-
-        if (toFile) {
-            try {
-                LOG.addAppender(new FileAppender(new PatternLayout(), filepath));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public Log4j() {
-        this(DEFAULT_LOGNAME, false, null);
-    }
 
     public Log4j(String filepath) {
-        this(DEFAULT_LOGNAME, true, filepath);
+        LOG = Logger.getLogger(filepath);
     }
 
     @Override
